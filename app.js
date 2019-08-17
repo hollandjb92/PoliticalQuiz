@@ -3,6 +3,9 @@ const express = require("express"),
   LocalStrategy = require("passport-local");
 
 
+const quizRoutes = require("./controllers/quizRoutes");
+
+
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -18,9 +21,11 @@ app.use(express.static(__dirname + "/public"));
 //PASSPORT CONFIG GOES HERE
 
 app.get("/", (req, res) => {
-  res.send("YAY IT WORKS");
+  res.render("index")
 })
 
+
+app.use("/", quizRoutes)
 
 
 app.listen(PORT, console.log(`Server running on PORT ${PORT}`))
