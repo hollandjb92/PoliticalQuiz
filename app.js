@@ -4,6 +4,7 @@ const express = require("express"),
 
 
 const quizRoutes = require("./controllers/quizRoutes");
+const authRoutes = require("./controllers/authRoutes");
 
 
 
@@ -25,7 +26,8 @@ app.get("/", (req, res) => {
 })
 
 
-app.use("/", quizRoutes)
+app.use("/", [quizRoutes, authRoutes])
+
 
 
 app.listen(PORT, console.log(`Server running on PORT ${PORT}`))
