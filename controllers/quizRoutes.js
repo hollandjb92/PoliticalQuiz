@@ -19,6 +19,18 @@ router.get("/quiz4", (req, res) => {
   res.render("quizFour")
 })
 
+router.get("/quiz5", (req, res) => {
+  res.render("quizFive")
+})
+
+router.get("/quiz6", (req, res) => {
+  res.render("quizSix")
+})
+
+router.get("/quiz7", (req, res) => {
+  res.render("quizSeven")
+})
+
 router.get("/results", (req, res) => {
   res.render("results")
 })
