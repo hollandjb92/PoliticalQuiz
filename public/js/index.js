@@ -13,12 +13,6 @@ $(document).ready(function () {
     //need to send to database here?
 
     console.log(userScores);
-    $.post("/api/posts", {
-        totalScore: totalScore
-      },
-      function (data, status) {
-        console.log("Data: " + data + "\nStatus: " + status);
-      });
 
   })
 })
