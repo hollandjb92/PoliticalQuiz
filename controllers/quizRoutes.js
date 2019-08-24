@@ -1,7 +1,22 @@
 const express = require("express"),
   router = express.Router();
 
+router.get("/api", function(req, res) {
+  console.log('statusCode:', res.statusCode);
+  res.send(res.body)
+});
 
+router.get("/api/posts", function(req, res) {
+  console.log('statusCode:', res.statusCode);
+  res.send(req.body)
+});
+
+router.post("/api/posts", function(req, res) {
+  console.log('statusCode:', req.statusCode);
+  console.log(req.body)
+  res.send(req.body)
+
+});
 
 router.get("/quiz1", (req, res) => {
   res.render("quizOne");
@@ -18,7 +33,7 @@ router.get("/quiz3", (req, res) => {
 router.get("/quiz4", (req, res) => {
   res.render("quizFour")
 })
-
+ 
 router.get("/quiz5", (req, res) => {
   res.render("quizFive")
 })
