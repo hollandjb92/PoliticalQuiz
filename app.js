@@ -24,7 +24,7 @@ app.use(express.static(__dirname + "/public"));
 //PASSPORT CONFIG GOES HERE
 
 app.get("/", (req, res) => {
-  res.render("index", )
+  res.render("login", )
 })
 
 
