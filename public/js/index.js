@@ -18,7 +18,7 @@ $(document).ready(function () {
       totalScore: totalScore
     },
     function(data, status){
-      console.log("Data: " + data + "\nStatus: " + status);
+      console.log("Data: " + JSON.stringify(data)+ "\nStatus: " + status);
     });
    
   })
