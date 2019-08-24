@@ -1,11 +1,7 @@
 const express = require("express"),
   passport = require("passport"),
   LocalStrategy = require("passport-local");
-
-
-const quizRoutes = require("./controllers/quizRoutes");
-const authRoutes = require("./controllers/authRoutes");
-
+  var session = require("express-session");
 
 
 const app = express();
@@ -30,6 +26,9 @@ app.use(passport.session());
 app.get("/", (req, res) => {
   res.render("login", )
 })
+
+const quizRoutes = require("./controllers/quizRoutes");
+const authRoutes = require("./controllers/authRoutes");
 
 
 app.use("/", [quizRoutes, authRoutes])
