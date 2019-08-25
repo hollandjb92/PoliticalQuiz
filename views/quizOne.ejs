@@ -1,43 +1,42 @@
 <%-include("partials/header.ejs")%>
 
-<h1>CRIMINAL JUSTICE</h1>
+<div id="questionsDiv">
 
-<form>
-<div>
-            <h3>Question 1</h3>
-            <h5>Do you support the decriminalization of marijuana</h5>
-          <label for="for"><input name="marijuana" value="10" type="radio" required>FOR</label>
-          <label for="against"><input name="marijuana" value="1" type="radio">AGAINST</label>
-          <label for="neutral"><input name="marijuana" value="5" type="radio">NEUTRAL</label>
+  <h1>CRIMINAL JUSTICE</h1>
 
-          </div>
+  <form method="POST">
+    <div>
+      <h3>Question 1</h3>
+      <h5>Do you support the decriminalization of marijuana</h5>
+      <label for="for"><input name="marijuana" value="10" type="radio" required>FOR</label>
+      <label for="against"><input name="marijuana" value="1" type="radio">AGAINST</label>
+      <label for="neutral"><input name="marijuana" value="5" type="radio">NEUTRAL</label>
+
+    </div>
 
 
     <div>
-            <h3>Question 2</h3>
-            <h5>Should gun purchasers be vetted through background checks? </h5>
-              <label for="for"><input name="guns" value="10"  type="radio" required>FOR</label>
-              <label for="against"><input  value="1" name="guns" type="radio">AGAINST</label>
-              <label for="neutral"><input name="guns"  value="5" type="radio">NEUTRAL</label>
+      <h3>Question 2</h3>
+      <h5>Should gun purchasers be vetted through background checks? </h5>
+      <label for="for"><input name="guns" value="10" type="radio" required>FOR</label>
+      <label for="against"><input value="1" name="guns" type="radio">AGAINST</label>
+      <label for="neutral"><input name="guns" value="5" type="radio">NEUTRAL</label>
 
-          </div>
-
-              <div>
-               <h3>Question 3</h3>
-            <h5>Do you support abolishing the death penalty?</h5>
-          <label for="for"><input name="death" value="10"  type="radio" required>FOR</label>
-          <label for="against"><input value="1" name="death" type="radio">AGAINST</label>
-          <label for="neutral"><input name="death" value="5" type="radio">NEUTRAL</label>
-
-          </div>
+    </div>
 
     <div>
+      <h3>Question 3</h3>
+      <h5>Do you support abolishing the death penalty?</h5>
+      <label for="for"><input name="death" value="10" type="radio" required>FOR</label>
+      <label for="against"><input value="1" name="death" type="radio">AGAINST</label>
+      <label for="neutral"><input name="death" value="5" type="radio">NEUTRAL</label>
 
-<a href="/" id="backToQuiz1" class="btn btn-warning"> Return to Homepage</a>
-<button type="submit" id="pageOneAnswers" class="btn btn-primary"> Save Answers</button>
-<a href="/quiz2" id="toQuiz2" class="btn btn-success"> Next Page</a>
+    </div>
 
-          </form>
+
+    <button type="submit" class="btn btn-primary submitQuestions" id="criminalJustice" disabled="disabled">Next
+      Questions</button>
+</div>
 
 
 <%-include("partials/footer.ejs")%>
