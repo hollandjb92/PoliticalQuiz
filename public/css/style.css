@@ -171,18 +171,22 @@
 footer {
   position: fixed;
   bottom: 0;
-  width: 100%;  
-  
+  width: 100%;
+
 }
 
-#quizSection{
+#quizSection {
   margin-bottom: 100px;
 }
 
-#questionsDiv{
+#questionsDiv {
   text-align: center;
   width: 50%;
   float: left;
   margin-top: -30px;
   margin-bottom: 150px;
+}
+
+header {
+  margin-top: 50px;
 }
