@@ -1,7 +1,7 @@
 const express = require("express"),
   passport = require("passport"),
   LocalStrategy = require("passport-local");
-  var session = require("express-session");
+var session = require("express-session");
 
 
 const app = express();
@@ -19,7 +19,11 @@ app.use(express.static(__dirname + "/public"));
 
 
 //PASSPORT CONFIG GOES HERE
-app.use(session({ secret: "keyboard cat", resave: true, saveUninitialized: true }));
+app.use(session({
+  secret: "keyboard cat",
+  resave: true,
+  saveUninitialized: true
+}));
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -34,8 +38,10 @@ const authRoutes = require("./controllers/authRoutes");
 app.use("/", [quizRoutes, authRoutes])
 
 // =============================================================
-db.sequelize.sync({ force: false }).then(function() {
-  app.listen(PORT, function() {
+db.sequelize.sync({
+  force: false
+}).then(function () {
+  app.listen(PORT, function () {
     console.log("App listening on PORT " + PORT);
   });
 });
