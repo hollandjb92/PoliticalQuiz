@@ -1,24 +1,20 @@
-$(document).ready(function() {
-  var allQuestions = [
-    {
+$(document).ready(function () {
+  var allQuestions = [{
       question: "Do you support decriminalizing marijuana on a federal level?",
       choices: ["FOR", "AGAINST", "NEUTRAL"],
-      info:
-        "Some states have decriminalized marijuana for medical and/or recreational use. Some candidates fully support decriminalizing marijuana on a federal level because they believe these drug laws do more harm than good. Others want to leave it up to the states to decide. The federal government usually doesn’t enforce marijuana prohibition laws in states that have legalized marijuana. It’s more of an informal rule but it could easily be reversed by whoever is in charge."
+      info: "Some states have decriminalized marijuana for medical and/or recreational use. Some candidates fully support decriminalizing marijuana on a federal level because they believe these drug laws do more harm than good. Others want to leave it up to the states to decide. The federal government usually doesn’t enforce marijuana prohibition laws in states that have legalized marijuana. It’s more of an informal rule but it could easily be reversed by whoever is in charge."
     },
 
     {
       question: "Should gun purchasers be vetted through background checks?",
       choices: ["FOR", "AGAINST", "NEUTRAL"],
-      info:
-        "Nearly all Democrats support universal background checks and closing any loopholes in the system. Currently private dealers at gun shows do not have to run background checks on potential buyers (this is commonly known as the gun show loophole). Also, if the FBI doesn’t complete a buyers background check within three days, a licensed gun seller can still sell the gun."
+      info: "Nearly all Democrats support universal background checks and closing any loopholes in the system. Currently private dealers at gun shows do not have to run background checks on potential buyers (this is commonly known as the gun show loophole). Also, if the FBI doesn’t complete a buyers background check within three days, a licensed gun seller can still sell the gun."
     },
 
     {
       question: "Do you support abolishing the death penalty?",
       choices: ["FOR", "AGAINST", "NEUTRAL"],
-      info:
-        "Many Democrats are speaking out against the death penalty. Several states (and Washington D.C.) have outlawed the death penalty. Those who oppose it say it’s inhumane and that there have been many people who were wrongly executed.. Others would keep it but only for extreme cases. Donald Trump supports the death penalty and has even talked about using it more often."
+      info: "Many Democrats are speaking out against the death penalty. Several states (and Washington D.C.) have outlawed the death penalty. Those who oppose it say it’s inhumane and that there have been many people who were wrongly executed.. Others would keep it but only for extreme cases. Donald Trump supports the death penalty and has even talked about using it more often."
     },
 
     {
@@ -26,18 +22,15 @@ $(document).ready(function() {
       choices: ["FOR", "AGAINST", "NEUTRAL"],
       name: "rollback",
       value: [10, 1, 5],
-      info:
-        "The Tax Cuts and Jobs Act from 2017 cut corporate taxes. It is widely unpopular among Democrats, who say it only benefits corporations and the wealthy."
+      info: "The Tax Cuts and Jobs Act from 2017 cut corporate taxes. It is widely unpopular among Democrats, who say it only benefits corporations and the wealthy."
     },
 
     {
-      question:
-        "Do you support raising the federal minimum wage to $15 per hour?",
+      question: "Do you support raising the federal minimum wage to $15 per hour?",
       choices: ["FOR", "AGAINST", "NEUTRAL"],
       name: "minimumWage",
       value: [10, 1, 5],
-      info:
-        "The federal minimum wage is currently set at $7.25 (it’s been this way since 2009). States may have different minimum wage laws. Most Democrats and some Republicans think change is long overdue (but they don’t always agree on the exact number). Many people in Donald Trump’s cabinet oppose raising the minimum wage.  "
+      info: "The federal minimum wage is currently set at $7.25 (it’s been this way since 2009). States may have different minimum wage laws. Most Democrats and some Republicans think change is long overdue (but they don’t always agree on the exact number). Many people in Donald Trump’s cabinet oppose raising the minimum wage.  "
     },
 
     {
@@ -45,18 +38,15 @@ $(document).ready(function() {
       choices: ["FOR", "AGAINST", "NEUTRAL"],
       name: "wealthy",
       value: [10, 1, 5],
-      info:
-        "Raising taxes on the wealthy is becoming an increasingly popular position. Others want to give more tax credits to middle and low income Americans (or a combination of both). "
+      info: "Raising taxes on the wealthy is becoming an increasingly popular position. Others want to give more tax credits to middle and low income Americans (or a combination of both). "
     },
 
     {
-      question:
-        "Should the federal government prevent states from passing laws that restrict abortion?",
+      question: "Should the federal government prevent states from passing laws that restrict abortion?",
       choices: ["FOR", "AGAINST", "NEUTRAL"],
       value: [10, 1, 5],
       name: "abortion",
-      info:
-        "All the 2020 Democrats are in favor of abortion rights. Some want to federal government to step in to stop states from abortion bans and allow federal funds to pay for them. Others want some limits on abortion, especially if they occur later in a woman’s pregnancy. Donald Trump has shifted his position from pro-choice to pro-life over the years."
+      info: "All the 2020 Democrats are in favor of abortion rights. Some want to federal government to step in to stop states from abortion bans and allow federal funds to pay for them. Others want some limits on abortion, especially if they occur later in a woman’s pregnancy. Donald Trump has shifted his position from pro-choice to pro-life over the years."
     },
 
     {
@@ -64,18 +54,15 @@ $(document).ready(function() {
       choices: ["FOR", "AGAINST", "NEUTRAL"],
       value: [10, 1, 5],
       name: "medicare",
-      info:
-        "All 2020 Democrats support some kind of universal health care. Some candidates would like to transition to a Medicare for all system that eliminates private health insurance. Others support having a government run healthcare program that also allows people to keep existing private healthcare plans if they choose to. Others say Medicare for all is too expensive and unrealistic but would expand the ACA (Affordable Care Act or Obamacare) to cover more people."
+      info: "All 2020 Democrats support some kind of universal health care. Some candidates would like to transition to a Medicare for all system that eliminates private health insurance. Others support having a government run healthcare program that also allows people to keep existing private healthcare plans if they choose to. Others say Medicare for all is too expensive and unrealistic but would expand the ACA (Affordable Care Act or Obamacare) to cover more people."
     },
 
     {
-      question:
-        "Should the government intervene to help contain rising drug prices?",
+      question: "Should the government intervene to help contain rising drug prices?",
       choices: ["FOR", "AGAINST", "NEUTRAL"],
       value: [10, 1, 5],
       name: "drugs",
-      info:
-        "Americans often pay more for prescription drugs than other developed nations. In other countries, governments negotiate the costs of drugs to keep the costs low. Different candidates have different ideas for controlling rising drug prices. Some want Medicare to negotiate drug prices, others want to allow importation of drugs, encouraging production of cheaper generic drugs and imposing taxes on drug companies that raise the price of drugs."
+      info: "Americans often pay more for prescription drugs than other developed nations. In other countries, governments negotiate the costs of drugs to keep the costs low. Different candidates have different ideas for controlling rising drug prices. Some want Medicare to negotiate drug prices, others want to allow importation of drugs, encouraging production of cheaper generic drugs and imposing taxes on drug companies that raise the price of drugs."
     },
 
     {
@@ -83,18 +70,15 @@ $(document).ready(function() {
       choices: ["FOR", "AGAINST", "NEUTRAL"],
       value: [10, 1, 5],
       name: "tuition",
-      info:
-        "Tuition free college is becoming more and more popular as student debt rises. Some candidates support free college, while others support free college for the first two years or free community college or vocational training or making education free for low-income families. Others support increasing financial aid for students so students don’t have to go into debt."
+      info: "Tuition free college is becoming more and more popular as student debt rises. Some candidates support free college, while others support free college for the first two years or free community college or vocational training or making education free for low-income families. Others support increasing financial aid for students so students don’t have to go into debt."
     },
 
     {
-      question:
-        "Should the government expand or fix existing student debt relief programs?",
+      question: "Should the government expand or fix existing student debt relief programs?",
       choices: ["FOR", "AGAINST", "NEUTRAL"],
       value: [10, 1, 5],
       name: "studentDebt",
-      info:
-        "Some candidates have bold plans to cancel all or some student debts. Others want to fix current debt relief programs such as cancelling student debt for people who work in public service or forgiving student debt for teachers. Most 2020 Democratic candidates want to lower monthly payments for borrowers and reduce interest rates on federal loans."
+      info: "Some candidates have bold plans to cancel all or some student debts. Others want to fix current debt relief programs such as cancelling student debt for people who work in public service or forgiving student debt for teachers. Most 2020 Democratic candidates want to lower monthly payments for borrowers and reduce interest rates on federal loans."
     },
 
     {
@@ -102,8 +86,7 @@ $(document).ready(function() {
       choices: ["FOR", "AGAINST", "NEUTRAL"],
       value: [10, 1, 5],
       name: "teachers",
-      info:
-        "Since 2018, teachers in various states have begun striking to protest low pay and poor working conditions. Teachers often make less than other professionals with similar education and experience."
+      info: "Since 2018, teachers in various states have begun striking to protest low pay and poor working conditions. Teachers often make less than other professionals with similar education and experience."
     },
 
     {
@@ -111,8 +94,7 @@ $(document).ready(function() {
       choices: ["FOR", "AGAINST", "NEUTRAL"],
       value: [10, 1, 5],
       name: "newDeal",
-      info:
-        "Earlier this year freshman Democrat Alexandria Ocasio-Cortez and Senator Ed Markey introduced an ambitious plan to fight climate change. This nonbinding resolution calls for dramatically reducing carbon emissions, investing in clean energy and transportation and creating jobs in the clean energy field. Many Democrats support it but others think it is too ambitious or disagree with some of the specifics and have their own plans to fight climate change. Donald Trump has stated that he doesn’t believe in climate change."
+      info: "Earlier this year freshman Democrat Alexandria Ocasio-Cortez and Senator Ed Markey introduced an ambitious plan to fight climate change. This nonbinding resolution calls for dramatically reducing carbon emissions, investing in clean energy and transportation and creating jobs in the clean energy field. Many Democrats support it but others think it is too ambitious or disagree with some of the specifics and have their own plans to fight climate change. Donald Trump has stated that he doesn’t believe in climate change."
     },
 
     {
@@ -120,8 +102,7 @@ $(document).ready(function() {
       choices: ["FOR", "AGAINST", "NEUTRAL"],
       value: [10, 1, 5],
       name: "paris",
-      info:
-        "The Paris Agreement is an international accord adopted by most countries in 2015. Each country commits to reducing greenhouse gas emissions to prevent global temperatures from rising above 2 degrees Celsius. Each country sets their own goals for reducing emissions. Donald Trump announced in 2017 that he plans to withdraw. This sparked a lot of backlash with many cities, states and businesses saying they will continue to keep working toward the original goals."
+      info: "The Paris Agreement is an international accord adopted by most countries in 2015. Each country commits to reducing greenhouse gas emissions to prevent global temperatures from rising above 2 degrees Celsius. Each country sets their own goals for reducing emissions. Donald Trump announced in 2017 that he plans to withdraw. This sparked a lot of backlash with many cities, states and businesses saying they will continue to keep working toward the original goals."
     },
 
     {
@@ -129,8 +110,7 @@ $(document).ready(function() {
       choices: ["FOR", "AGAINST", "NEUTRAL"],
       value: [10, 1, 5],
       name: "nuclear",
-      info:
-        "Nuclear power creates a lot of electricity without the greenhouse gas emissions of coal or natural gas. But the waste created from nuclear power plants can be dangerous. This has become an even bigger concern after the infamous 2011 Fukushima meltdown in Japan."
+      info: "Nuclear power creates a lot of electricity without the greenhouse gas emissions of coal or natural gas. But the waste created from nuclear power plants can be dangerous. This has become an even bigger concern after the infamous 2011 Fukushima meltdown in Japan."
     },
 
     {
@@ -138,28 +118,23 @@ $(document).ready(function() {
       choices: ["FOR", "AGAINST", "NEUTRAL"],
       value: [10, 1, 5],
       name: "illegal",
-      info:
-        "It’s currently a crime to cross the border with an inspection by an immigration officer. Some candidates have proposed making it a civil offense rather than a crime. Others want to keep the statue in place but still reform immigration laws."
+      info: "It’s currently a crime to cross the border with an inspection by an immigration officer. Some candidates have proposed making it a civil offense rather than a crime. Others want to keep the statue in place but still reform immigration laws."
     },
 
     {
-      question:
-        "Do you support citizenship for DACA (Deferred Action for Childhood Arrivals?",
+      question: "Do you support citizenship for DACA (Deferred Action for Childhood Arrivals?",
       choices: ["FOR", "AGAINST", "NEUTRAL"],
       value: [10, 1, 5],
       name: "daca",
-      info:
-        "President Obama created DACA in 2012. This program allows undocumented immigrants brought to the country as children (known as “Dreamers”) to live and work here without the threat of deportation. President Trump has been trying since 2017 to phase out the program but the decision has been temporarily blocked by federal courts. Members of Congress have (unsuccessfully) tried for years to provide a path to citizenship for Dreamers."
+      info: "President Obama created DACA in 2012. This program allows undocumented immigrants brought to the country as children (known as “Dreamers”) to live and work here without the threat of deportation. President Trump has been trying since 2017 to phase out the program but the decision has been temporarily blocked by federal courts. Members of Congress have (unsuccessfully) tried for years to provide a path to citizenship for Dreamers."
     },
 
     {
-      question:
-        "Should the government provide additional funding for border wall construction?",
+      question: "Should the government provide additional funding for border wall construction?",
       choices: ["FOR", "AGAINST", "NEUTRAL"],
       value: [10, 1, 5],
       name: "wall",
-      info:
-        "“The Wall” was one of Donald Trump’s signature campaign promises. Most Democrats oppose spending billions to build the wall. Some Democrats want to tear down portions of the wall while others are considering supporting border wall funding as part of immigration reform bills."
+      info: "“The Wall” was one of Donald Trump’s signature campaign promises. Most Democrats oppose spending billions to build the wall. Some Democrats want to tear down portions of the wall while others are considering supporting border wall funding as part of immigration reform bills."
     },
 
     {
@@ -167,8 +142,7 @@ $(document).ready(function() {
       choices: ["Over 65", "Over 70", "Doesn't matter"],
       value: [65, 70, 55],
       name: "old",
-      info:
-        "Age is a concern for some of the candidates. Donald Trump is currently the oldest U.S. President at 73. If elected, Bernie Sanders would become the oldest president at 79."
+      info: "Age is a concern for some of the candidates. Donald Trump is currently the oldest U.S. President at 73. If elected, Bernie Sanders would become the oldest president at 79."
     },
 
     {
@@ -176,20 +150,19 @@ $(document).ready(function() {
       choices: ["Under 40", "Under 45", "Doesn't matter"],
       name: "young",
       value: [40, 45, 55],
-      info:
-        "Obviously, they would have to be at least 35 as required by the Constitution."
+      info: "Obviously, they would have to be at least 35 as required by the Constitution."
     }
   ];
 
   $(":radio")
-    .change(function() {
+    .change(function () {
       var count = 0;
       console.log(count);
       var names = {};
-      $(":radio").each(function() {
+      $(":radio").each(function () {
         names[$(this).attr("name")] = true;
       });
-      $.each(names, function() {
+      $.each(names, function () {
         count++;
       });
       if ($(":radio:checked").length === count) {
@@ -201,7 +174,7 @@ $(document).ready(function() {
     })
     .change();
 
-  $(document).on("click", "#criminalJustice", function() {
+  $(document).on("click", "#criminalJustice", function () {
     event.preventDefault();
 
     const userScores = {
@@ -215,11 +188,10 @@ $(document).ready(function() {
 
     console.log(userScores);
     $.post(
-      "/api/posts",
-      {
+      "/api/posts", {
         totalScore: totalScore
       },
-      function(data, status) {
+      function (data, status) {
         console.log("Data: " + JSON.stringify(data) + "\nStatus: " + status);
       }
     );
@@ -242,12 +214,12 @@ $(document).ready(function() {
         newDiv.append(
           $(
             "<label><input type='radio' value='" +
-              allQuestions[i].value[j] +
-              "'name='" +
-              allQuestions[i].name +
-              "'>" +
-              allQuestions[i].choices[j] +
-              "</label>"
+            allQuestions[i].value[j] +
+            "'name='" +
+            allQuestions[i].name +
+            "'>" +
+            allQuestions[i].choices[j] +
+            "</label>"
           )
         );
       }
@@ -265,7 +237,7 @@ $(document).ready(function() {
   });
 
   // need to "create quiz page 3 inside here"
-  $(document).on("click", "#taxWage", function(event) {
+  $(document).on("click", "#taxWage", function (event) {
     event.preventDefault();
 
     const userScores = {
@@ -280,11 +252,10 @@ $(document).ready(function() {
 
     console.log(userScores);
     $.post(
-      "/api/posts",
-      {
+      "/api/posts", {
         totalScore: totalScore
       },
-      function(data, status) {
+      function (data, status) {
         console.log("Data: " + JSON.stringify(data) + "\nStatus: " + status);
       }
     );
@@ -303,12 +274,12 @@ $(document).ready(function() {
         newDiv.append(
           $(
             "<label><input type='radio' value='" +
-              allQuestions[i].value[j] +
-              "'name='" +
-              allQuestions[i].name +
-              "'>" +
-              allQuestions[i].choices[j] +
-              "</label>"
+            allQuestions[i].value[j] +
+            "'name='" +
+            allQuestions[i].name +
+            "'>" +
+            allQuestions[i].choices[j] +
+            "</label>"
           )
         );
       }
@@ -325,7 +296,7 @@ $(document).ready(function() {
     );
   });
 
-  $(document).on("click", "#healthcare", function(event) {
+  $(document).on("click", "#healthcare", function (event) {
     event.preventDefault();
 
     const userScores = {
@@ -340,11 +311,10 @@ $(document).ready(function() {
 
     console.log(userScores);
     $.post(
-      "/api/posts",
-      {
+      "/api/posts", {
         totalScore: totalScore
       },
-      function(data, status) {
+      function (data, status) {
         console.log("Data: " + JSON.stringify(data) + "\nStatus: " + status);
       }
     );
@@ -363,12 +333,12 @@ $(document).ready(function() {
         newDiv.append(
           $(
             "<label><input type='radio' value='" +
-              allQuestions[i].value[j] +
-              "'name='" +
-              allQuestions[i].name +
-              "'>" +
-              allQuestions[i].choices[j] +
-              "</label>"
+            allQuestions[i].value[j] +
+            "'name='" +
+            allQuestions[i].name +
+            "'>" +
+            allQuestions[i].choices[j] +
+            "</label>"
           )
         );
       }
@@ -385,7 +355,7 @@ $(document).ready(function() {
     );
   });
 
-  $(document).on("click", "#education", function(event) {
+  $(document).on("click", "#education", function (event) {
     event.preventDefault();
 
     const userScores = {
@@ -400,11 +370,10 @@ $(document).ready(function() {
 
     console.log(userScores);
     $.post(
-      "/api/posts",
-      {
+      "/api/posts", {
         totalScore: totalScore
       },
-      function(data, status) {
+      function (data, status) {
         console.log("Data: " + JSON.stringify(data) + "\nStatus: " + status);
       }
     );
@@ -423,12 +392,12 @@ $(document).ready(function() {
         newDiv.append(
           $(
             "<label><input type='radio' value='" +
-              allQuestions[i].value[j] +
-              "'name='" +
-              allQuestions[i].name +
-              "'>" +
-              allQuestions[i].choices[j] +
-              "</label>"
+            allQuestions[i].value[j] +
+            "'name='" +
+            allQuestions[i].name +
+            "'>" +
+            allQuestions[i].choices[j] +
+            "</label>"
           )
         );
       }
@@ -445,7 +414,7 @@ $(document).ready(function() {
     );
   });
 
-  $(document).on("click", "#climate", function(event) {
+  $(document).on("click", "#climate", function (event) {
     event.preventDefault();
 
     const userScores = {
@@ -460,11 +429,10 @@ $(document).ready(function() {
 
     console.log(userScores);
     $.post(
-      "/api/posts",
-      {
+      "/api/posts", {
         totalScore: totalScore
       },
-      function(data, status) {
+      function (data, status) {
         console.log("Data: " + JSON.stringify(data) + "\nStatus: " + status);
       }
     );
@@ -483,12 +451,12 @@ $(document).ready(function() {
         newDiv.append(
           $(
             "<label><input type='radio' value='" +
-              allQuestions[i].value[j] +
-              "'name='" +
-              allQuestions[i].name +
-              "'>" +
-              allQuestions[i].choices[j] +
-              "</label>"
+            allQuestions[i].value[j] +
+            "'name='" +
+            allQuestions[i].name +
+            "'>" +
+            allQuestions[i].choices[j] +
+            "</label>"
           )
         );
       }
@@ -505,7 +473,7 @@ $(document).ready(function() {
     );
   });
 
-  $(document).on("click", "#immigration", function(event) {
+  $(document).on("click", "#immigration", function (event) {
     event.preventDefault();
 
     const userScores = {
@@ -520,11 +488,10 @@ $(document).ready(function() {
 
     console.log(userScores);
     $.post(
-      "/api/posts",
-      {
+      "/api/posts", {
         totalScore: totalScore
       },
-      function(data, status) {
+      function (data, status) {
         console.log("Data: " + JSON.stringify(data) + "\nStatus: " + status);
       }
     );
@@ -543,12 +510,12 @@ $(document).ready(function() {
         newDiv.append(
           $(
             "<label><input type='radio' value='" +
-              allQuestions[i].value[j] +
-              "'name='" +
-              allQuestions[i].name +
-              "'>" +
-              allQuestions[i].choices[j] +
-              "</label>"
+            allQuestions[i].value[j] +
+            "'name='" +
+            allQuestions[i].name +
+            "'>" +
+            allQuestions[i].choices[j] +
+            "</label>"
           )
         );
       }
@@ -560,12 +527,12 @@ $(document).ready(function() {
 
     $("#questionsDiv").append(
       $(
-        "<button type='submit' class='btn btn-primary submitQuestions' id='age'>Next Questions</button>"
+        "<button type='submit' class='btn btn-primary submitQuestions' id='age'>See Results</button>"
       )
     );
   });
 
-  $(document).on("click", "#age", function(event) {
+  $(document).on("click", "#age", function (event) {
     event.preventDefault();
 
     const userScores = {
@@ -579,11 +546,10 @@ $(document).ready(function() {
 
     console.log(userScores);
     $.post(
-      "/api/posts",
-      {
+      "/api/posts", {
         totalScore: totalScore
       },
-      function(data, status) {
+      function (data, status) {
         console.log("Data: " + JSON.stringify(data) + "\nStatus: " + status);
       }
     );
@@ -600,7 +566,7 @@ $(document).ready(function() {
   var pie = d3.layout
     .pie()
     .sort(null)
-    .value(function(d) {
+    .value(function (d) {
       return d.width;
     });
 
@@ -608,7 +574,7 @@ $(document).ready(function() {
     .tip()
     .attr("class", "d3-tip")
     .offset([0, 0])
-    .html(function(d) {
+    .html(function (d) {
       return (
         d.data.label + ": <span style='color:red'>" + d.data.score + "</span>"
       );
@@ -617,7 +583,7 @@ $(document).ready(function() {
   var arc = d3.svg
     .arc()
     .innerRadius(innerRadius)
-    .outerRadius(function(d) {
+    .outerRadius(function (d) {
       return (radius - innerRadius) * (d.data.score / 100.0) + innerRadius;
     });
 
@@ -638,8 +604,8 @@ $(document).ready(function() {
 
   d3.csv(
     "https://gist.githubusercontent.com/bbest/2de0e25d4840c68f2db1/raw/52757de7e4584a6ff8cefbd2f8cea8a0d7cc2f0c/aster_data.csv",
-    function(error, data) {
-      data.forEach(function(d) {
+    function (error, data) {
+      data.forEach(function (d) {
         d.id = d.id;
         d.order = +d.order;
         d.color = d.color;
@@ -659,7 +625,7 @@ $(document).ready(function() {
         .enter()
         .append("path")
         //make it pick a random color??
-        .attr("fill", function(d) {
+        .attr("fill", function (d) {
           return d.data.color;
         })
         .attr("class", "solidArc")
@@ -680,11 +646,11 @@ $(document).ready(function() {
 
       // calculate the weighted mean score // won't need this part but keep for now in case we do some kind of average
       var score =
-        data.reduce(function(a, b) {
+        data.reduce(function (a, b) {
           //console.log('a:' + a + ', b.score: ' + b.score + ', b.weight: ' + b.weight);
           return a + b.score * b.weight;
         }, 0) /
-        data.reduce(function(a, b) {
+        data.reduce(function (a, b) {
           return a + b.weight;
         }, 0);
 
