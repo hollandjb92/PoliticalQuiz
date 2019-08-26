@@ -184,9 +184,13 @@ footer {
   width: 50%;
   float: left;
   margin-top: -30px;
-  margin-bottom: 150px;
+  margin-bottom: 220px;
 }
 
 header {
   margin-top: 50px;
+}
+
+#loginForm {
+  margin-top: 100px;
 }

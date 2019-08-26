@@ -2,18 +2,24 @@ $(document).ready(function () {
   var allQuestions = [{
       question: "Do you support decriminalizing marijuana on a federal level?",
       choices: ["FOR", "AGAINST", "NEUTRAL"],
+      value: [10, 1, 5],
+      name: "marijuana",
       info: "Some states have decriminalized marijuana for medical and/or recreational use. Some candidates fully support decriminalizing marijuana on a federal level because they believe these drug laws do more harm than good. Others want to leave it up to the states to decide. The federal government usually doesn’t enforce marijuana prohibition laws in states that have legalized marijuana. It’s more of an informal rule but it could easily be reversed by whoever is in charge."
     },
 
     {
       question: "Should gun purchasers be vetted through background checks?",
       choices: ["FOR", "AGAINST", "NEUTRAL"],
+      value: [10, 1, 5],
+      name: "guns",
       info: "Nearly all Democrats support universal background checks and closing any loopholes in the system. Currently private dealers at gun shows do not have to run background checks on potential buyers (this is commonly known as the gun show loophole). Also, if the FBI doesn’t complete a buyers background check within three days, a licensed gun seller can still sell the gun."
     },
 
     {
       question: "Do you support abolishing the death penalty?",
       choices: ["FOR", "AGAINST", "NEUTRAL"],
+      value: [10, 1, 5],
+      name: "death",
       info: "Many Democrats are speaking out against the death penalty. Several states (and Washington D.C.) have outlawed the death penalty. Those who oppose it say it’s inhumane and that there have been many people who were wrongly executed.. Others would keep it but only for extreme cases. Donald Trump supports the death penalty and has even talked about using it more often."
     },
 
@@ -138,44 +144,85 @@ $(document).ready(function () {
     },
 
     {
-      question: "How old do you think is too old be president?",
-      choices: ["Over 65", "Over 70", "Doesn't matter"],
-      value: [65, 70, 55],
-      name: "old",
+      question: "What is your preferred age range for President?",
+      choices: ["35 - 44 ", "45- 54", "55-64", "65-74", "75 or older"],
+      value: [40, 50, 60, 70, 80],
+      name: "age",
       info: "Age is a concern for some of the candidates. Donald Trump is currently the oldest U.S. President at 73. If elected, Bernie Sanders would become the oldest president at 79."
     },
-
-    {
-      question: "How young do you think is too young to be president?",
-      choices: ["Under 40", "Under 45", "Doesn't matter"],
-      name: "young",
-      value: [40, 45, 55],
-      info: "Obviously, they would have to be at least 35 as required by the Constitution."
-    }
   ];
 
-  $(":radio")
-    .change(function () {
-      var count = 0;
-      console.log(count);
-      var names = {};
-      $(":radio").each(function () {
-        names[$(this).attr("name")] = true;
-      });
-      $.each(names, function () {
-        count++;
-      });
-      if ($(":radio:checked").length === count) {
-        console.log(count);
-        $(".submitQuestions").prop("disabled", false);
-      } else {
-        $(".submitQuestions").prop("disabled", true);
+
+
+  // disabledButton() {
+  //     $(":radio")
+  //       .change(function () {
+  //         let count = 0;
+  //         var names = {};
+  //         $(":radio").each(function () {
+  //           names[$(this).attr("name")] = true;
+  //         });
+  //         $.each(names, function () {
+  //           count++;
+  //         });
+  //         if ($(":radio:checked").length === count) {
+  //           $(".submitQuestions").prop("disabled", false);
+  //         } else {
+  //           $(".submitQuestions").prop("disabled", true);
+  //         }
+  //       })
+  //       .change();
+  //   }
+
+
+
+
+  $(document).on("click", "#startQuiz", function (event) {
+
+    event.preventDefault();
+    let email = $("#email").val();
+    console.log(email);
+
+    $("#questionsDiv").empty();
+    $("#questionsDiv").append($("<h1>").text("Criminal Justice"));
+    $("#questionsDiv").append($("<form>"));
+
+    for (i = 0; i < 3; i++) {
+      var newDiv = $("<div>");
+      newDiv.append($("<h3>").text("Question " + parseInt(i + 1)));
+      newDiv.append($("<h5>").text(allQuestions[i].question));
+      for (j = 0; j < 3; j++) {
+
+
+        newDiv.append(
+          $(
+            "<label><input type='radio' value='" +
+            allQuestions[i].value[j] +
+            "'name='" +
+            allQuestions[i].name +
+            "'>" +
+            allQuestions[i].choices[j] +
+            "</label>"
+          )
+        );
       }
-    })
-    .change();
+
+      $("#questionsDiv")
+        .children("form")
+        .append(newDiv);
+    }
+
+    $("#questionsDiv").append(
+      $(
+        "<button type='submit' class='btn btn-primary submitQuestions'   id ='criminalJustice'> Next Questions </button>"
+      )
+    );
+  });
 
   $(document).on("click", "#criminalJustice", function () {
     event.preventDefault();
+
+
 
     const userScores = {
       scores: [
@@ -189,7 +236,7 @@ $(document).ready(function () {
     console.log(userScores);
     $.post(
       "/api/posts", {
-        totalScore: totalScore
+        totalScore
       },
       function (data, status) {
         console.log("Data: " + JSON.stringify(data) + "\nStatus: " + status);
@@ -197,7 +244,7 @@ $(document).ready(function () {
     );
 
     $("#questionsDiv").empty();
-    $("#questionsDiv").append($("<h1>").text("Tax & Wage Questions"));
+    $("#questionsDiv").append($("<h1>").text("Economics"));
     $("#questionsDiv").append($("<form>"));
 
     for (i = 3; i < 6; i++) {
@@ -205,7 +252,7 @@ $(document).ready(function () {
       newDiv.append($("<h3>").text("Question " + parseInt(i + 1)));
       newDiv.append($("<h5>").text(allQuestions[i].question));
       for (j = 0; j < 3; j++) {
-        console.log(allQuestions[i].value[j]);
+
         // newDiv.append($("<label>").append($("<input>").attr({
         //   type: "radio",
         //   value: allQuestions[i].value[j],
@@ -231,7 +278,7 @@ $(document).ready(function () {
 
     $("#questionsDiv").append(
       $(
-        "<button type='submit' class='btn btn-primary submitQuestions' id='taxWage'>Next Questions</button>"
+        "<button type='submit' class='btn btn-primary submitQuestions' id='taxWage' >Next Questions</button>"
       )
     );
   });
@@ -261,7 +308,7 @@ $(document).ready(function () {
     );
 
     $("#questionsDiv").empty();
-    $("#questionsDiv").append($("<h1>").text("HealthCare Questions"));
+    $("#questionsDiv").append($("<h1>").text("Healthcare"));
     $("#questionsDiv").append($("<form>"));
 
     for (i = 6; i < 9; i++) {
@@ -269,7 +316,7 @@ $(document).ready(function () {
       newDiv.append($("<h3>").text("Question " + parseInt(i + 1)));
       newDiv.append($("<h5>").text(allQuestions[i].question));
       for (j = 0; j < 3; j++) {
-        console.log(allQuestions[i].value[j]);
+
 
         newDiv.append(
           $(
@@ -291,7 +338,7 @@ $(document).ready(function () {
 
     $("#questionsDiv").append(
       $(
-        "<button type='submit' class='btn btn-primary submitQuestions' id='healthcare'>Next Questions</button>"
+        "<button type='submit' class='btn btn-primary submitQuestions'  id='healthcare'>Next Questions</button>"
       )
     );
   });
@@ -320,7 +367,7 @@ $(document).ready(function () {
     );
 
     $("#questionsDiv").empty();
-    $("#questionsDiv").append($("<h1>").text("Education Questions"));
+    $("#questionsDiv").append($("<h1>").text("Education"));
     $("#questionsDiv").append($("<form>"));
 
     for (i = 9; i < 12; i++) {
@@ -328,7 +375,7 @@ $(document).ready(function () {
       newDiv.append($("<h3>").text("Question " + parseInt(i + 1)));
       newDiv.append($("<h5>").text(allQuestions[i].question));
       for (j = 0; j < 3; j++) {
-        console.log(allQuestions[i].value[j]);
+
 
         newDiv.append(
           $(
@@ -350,10 +397,12 @@ $(document).ready(function () {
 
     $("#questionsDiv").append(
       $(
-        "<button type='submit' class='btn btn-primary submitQuestions' id='education'>Next Questions</button>"
+        "<button type='submit' class='btn btn-primary submitQuestions'  id='education'>Next Questions</button>"
       )
     );
   });
+
+
 
   $(document).on("click", "#education", function (event) {
     event.preventDefault();
@@ -379,7 +428,7 @@ $(document).ready(function () {
     );
 
     $("#questionsDiv").empty();
-    $("#questionsDiv").append($("<h1>").text("Environment/Climate Questions"));
+    $("#questionsDiv").append($("<h1>").text("Environment/Climate "));
     $("#questionsDiv").append($("<form>"));
 
     for (i = 12; i < 15; i++) {
@@ -387,7 +436,7 @@ $(document).ready(function () {
       newDiv.append($("<h3>").text("Question " + parseInt(i + 1)));
       newDiv.append($("<h5>").text(allQuestions[i].question));
       for (j = 0; j < 3; j++) {
-        console.log(allQuestions[i].value[j]);
+
 
         newDiv.append(
           $(
@@ -409,7 +458,7 @@ $(document).ready(function () {
 
     $("#questionsDiv").append(
       $(
-        "<button type='submit' class='btn btn-primary submitQuestions' id='climate'>Next Questions</button>"
+        "<button type='submit' class='btn btn-primary submitQuestions'  id='climate'>Next Questions</button>"
       )
     );
   });
@@ -438,7 +487,7 @@ $(document).ready(function () {
     );
 
     $("#questionsDiv").empty();
-    $("#questionsDiv").append($("<h1>").text("Immigration Questions"));
+    $("#questionsDiv").append($("<h1>").text("Immigration"));
     $("#questionsDiv").append($("<form>"));
 
     for (i = 15; i < 18; i++) {
@@ -446,7 +495,7 @@ $(document).ready(function () {
       newDiv.append($("<h3>").text("Question " + parseInt(i + 1)));
       newDiv.append($("<h5>").text(allQuestions[i].question));
       for (j = 0; j < 3; j++) {
-        console.log(allQuestions[i].value[j]);
+
 
         newDiv.append(
           $(
@@ -468,7 +517,7 @@ $(document).ready(function () {
 
     $("#questionsDiv").append(
       $(
-        "<button type='submit' class='btn btn-primary submitQuestions' id='immigration'>Next Questions</button>"
+        "<button type='submit' class='btn btn-primary submitQuestions'  id='immigration'>Next Questions</button>"
       )
     );
   });
@@ -497,15 +546,15 @@ $(document).ready(function () {
     );
 
     $("#questionsDiv").empty();
-    $("#questionsDiv").append($("<h1>").text("Age Questions"));
+    $("#questionsDiv").append($("<h1>").text("Age"));
     $("#questionsDiv").append($("<form>"));
 
-    for (i = 18; i < 20; i++) {
+    for (i = 18; i < 19; i++) {
       var newDiv = $("<div>");
       newDiv.append($("<h3>").text("Question " + parseInt(i + 1)));
       newDiv.append($("<h5>").text(allQuestions[i].question));
-      for (j = 0; j < 3; j++) {
-        console.log(allQuestions[i].value[j]);
+      for (j = 0; j < 5; j++) {
+
 
         newDiv.append(
           $(
@@ -527,7 +576,7 @@ $(document).ready(function () {
 
     $("#questionsDiv").append(
       $(
-        "<button type='submit' class='btn btn-primary submitQuestions' id='age'>See Results</button>"
+        "<button type='submit' class='btn btn-primary submitQuestions'  id='age'>See Results</button>"
       )
     );
   });
@@ -537,9 +586,7 @@ $(document).ready(function () {
 
     const userScores = {
       scores: [
-        (q19Score = parseInt($("input[name=old]:checked").val())),
-        (q20Score = parseInt($("input[name=young]:checked").val())),
-        (totalScore = q19Score + q20Score)
+        (totalScore = parseInt($("input[name=age]:checked").val()))
       ]
     };
     //need to send to database here?
@@ -558,108 +605,108 @@ $(document).ready(function () {
     $("#questionsDiv").empty();
   });
   // d3 js //
-  var width = 750,
-    height = 750,
-    radius = Math.min(width, height) / 2,
-    innerRadius = 0.3 * radius;
+  //   var width = 750,
+  //     height = 750,
+  //     radius = Math.min(width, height) / 2,
+  //     innerRadius = 0.3 * radius;
 
-  var pie = d3.layout
-    .pie()
-    .sort(null)
-    .value(function (d) {
-      return d.width;
-    });
+  //   var pie = d3.layout
+  //     .pie()
+  //     .sort(null)
+  //     .value(function (d) {
+  //       return d.width;
+  //     });
 
-  var tip = d3
-    .tip()
-    .attr("class", "d3-tip")
-    .offset([0, 0])
-    .html(function (d) {
-      return (
-        d.data.label + ": <span style='color:red'>" + d.data.score + "</span>"
-      );
-    });
+  //   var tip = d3
+  //     .tip()
+  //     .attr("class", "d3-tip")
+  //     .offset([0, 0])
+  //     .html(function (d) {
+  //       return (
+  //         d.data.label + ": <span style='color:red'>" + d.data.score + "</span>"
+  //       );
+  //     });
 
-  var arc = d3.svg
-    .arc()
-    .innerRadius(innerRadius)
-    .outerRadius(function (d) {
-      return (radius - innerRadius) * (d.data.score / 100.0) + innerRadius;
-    });
+  //   var arc = d3.svg
+  //     .arc()
+  //     .innerRadius(innerRadius)
+  //     .outerRadius(function (d) {
+  //       return (radius - innerRadius) * (d.data.score / 100.0) + innerRadius;
+  //     });
 
-  var outlineArc = d3.svg
-    .arc()
-    .innerRadius(innerRadius)
-    .outerRadius(radius);
+  //   var outlineArc = d3.svg
+  //     .arc()
+  //     .innerRadius(innerRadius)
+  //     .outerRadius(radius);
 
-  var svg = d3
-    .select("body")
-    .append("svg")
-    .attr("width", width)
-    .attr("height", height)
-    .append("g")
-    .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
+  //   var svg = d3
+  //     .select("body")
+  //     .append("svg")
+  //     .attr("width", width)
+  //     .attr("height", height)
+  //     .append("g")
+  //     .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
 
-  svg.call(tip);
+  //   svg.call(tip);
 
-  d3.csv(
-    "https://gist.githubusercontent.com/bbest/2de0e25d4840c68f2db1/raw/52757de7e4584a6ff8cefbd2f8cea8a0d7cc2f0c/aster_data.csv",
-    function (error, data) {
-      data.forEach(function (d) {
-        d.id = d.id;
-        d.order = +d.order;
-        d.color = d.color;
-        d.weight = +d.weight;
-        d.score = +d.score;
-        d.width = +d.weight;
-        d.label = d.label;
-      });
+  //   d3.csv(
+  //     "https://gist.githubusercontent.com/bbest/2de0e25d4840c68f2db1/raw/52757de7e4584a6ff8cefbd2f8cea8a0d7cc2f0c/aster_data.csv",
+  //     function (error, data) {
+  //       data.forEach(function (d) {
+  //         d.id = d.id;
+  //         d.order = +d.order;
+  //         d.color = d.color;
+  //         d.weight = +d.weight;
+  //         d.score = +d.score;
+  //         d.width = +d.weight;
+  //         d.label = d.label;
+  //       });
 
-      //sort chart from highest to lowest if desired
-      // data.sort((a, b) => d3.descending(a.score, b.score));
-      // for (var i = 0; i < data.score; i++) { console.log(data[i].id) }
+  //       //sort chart from highest to lowest if desired
+  //       // data.sort((a, b) => d3.descending(a.score, b.score));
+  //       // for (var i = 0; i < data.score; i++) { console.log(data[i].id) }
 
-      var path = svg
-        .selectAll(".solidArc")
-        .data(pie(data))
-        .enter()
-        .append("path")
-        //make it pick a random color??
-        .attr("fill", function (d) {
-          return d.data.color;
-        })
-        .attr("class", "solidArc")
-        .attr("stroke", "gray")
-        .attr("d", arc)
-        .on("mouseover", tip.show)
-        .on("mouseout", tip.hide);
+  //       var path = svg
+  //         .selectAll(".solidArc")
+  //         .data(pie(data))
+  //         .enter()
+  //         .append("path")
+  //         //make it pick a random color??
+  //         .attr("fill", function (d) {
+  //           return d.data.color;
+  //         })
+  //         .attr("class", "solidArc")
+  //         .attr("stroke", "gray")
+  //         .attr("d", arc)
+  //         .on("mouseover", tip.show)
+  //         .on("mouseout", tip.hide);
 
-      var outerPath = svg
-        .selectAll(".outlineArc")
-        .data(pie(data))
-        .enter()
-        .append("path")
-        .attr("fill", "none")
-        .attr("stroke", "gray")
-        .attr("class", "outlineArc")
-        .attr("d", outlineArc);
+  //       var outerPath = svg
+  //         .selectAll(".outlineArc")
+  //         .data(pie(data))
+  //         .enter()
+  //         .append("path")
+  //         .attr("fill", "none")
+  //         .attr("stroke", "gray")
+  //         .attr("class", "outlineArc")
+  //         .attr("d", outlineArc);
 
-      // calculate the weighted mean score // won't need this part but keep for now in case we do some kind of average
-      var score =
-        data.reduce(function (a, b) {
-          //console.log('a:' + a + ', b.score: ' + b.score + ', b.weight: ' + b.weight);
-          return a + b.score * b.weight;
-        }, 0) /
-        data.reduce(function (a, b) {
-          return a + b.weight;
-        }, 0);
+  //       // calculate the weighted mean score // won't need this part but keep for now in case we do some kind of average
+  //       var score =
+  //         data.reduce(function (a, b) {
+  //           //console.log('a:' + a + ', b.score: ' + b.score + ', b.weight: ' + b.weight);
+  //           return a + b.score * b.weight;
+  //         }, 0) /
+  //         data.reduce(function (a, b) {
+  //           return a + b.weight;
+  //         }, 0);
 
-      svg
-        .append("svg:text")
-        .attr("class", "aster-score ")
-        .attr("dy", ".35em")
-        .attr("text-anchor", "middle") // text-align: right
-        .text(2020);
-    }
-  );
+  //       svg
+  //         .append("svg:text")
+  //         .attr("class", "aster-score ")
+  //         .attr("dy", ".35em")
+  //         .attr("text-anchor", "middle") // text-align: right
+  //         .text(2020);
+  //     }
+  //   );
 });
