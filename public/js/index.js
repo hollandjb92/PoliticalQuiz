@@ -178,10 +178,18 @@ $(document).ready(function () {
 
 
   $(document).on("click", "#startQuiz", function (event) {
-
+    
     event.preventDefault();
     let email = $("#email").val();
-    console.log(email);
+    console.log("log statement" + email);
+    $.post(
+      "/api/posts", {
+        email: email
+      },
+      function (data, status) {
+        console.log("Data: " + JSON.stringify(data) + "\nStatus: " + status);
+      }
+    );
 
     $("#questionsDiv").empty();
     $("#questionsDiv").append($("<h1>").text("Criminal Justice"));
@@ -234,14 +242,15 @@ $(document).ready(function () {
     };
 
     console.log(userScores);
-    $.post(
-      "/api/posts", {
-        totalScore
-      },
-      function (data, status) {
+    $.ajax({
+      url: '/api/posts', 
+      type: 'PUT', 
+      data: "totalScore=totalScore",
+      success: function (data, status) {
         console.log("Data: " + JSON.stringify(data) + "\nStatus: " + status);
-      }
-    );
+      },
+
+      });
 
     $("#questionsDiv").empty();
     $("#questionsDiv").append($("<h1>").text("Economics"));

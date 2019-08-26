@@ -5,13 +5,13 @@ var db = require("../models");
 let posts = [];
 
 router.get("/api", function (req, res) {
-  console.log('statusCode:', res.statusCode);
+  console.log('statusCode: h', res.statusCode);
   res.send(res.body)
 
 });
 
 router.get("/api/posts", function (req, res) {
-  console.log('statusCode:', res.statusCode);
+  console.log('statusCode: a', res.statusCode);
   db.User.findAll({})
     .then(function (dbPost) {
       res.json(dbPost);
@@ -20,8 +20,8 @@ router.get("/api/posts", function (req, res) {
 });
 
 router.post("/api/posts", function (req, res) {
-  console.log('statusCode:', req.statusCode);
-  console.log(req.body)
+  console.log('statusCode: b', req.statusCode);
+  console.log("this here", req.body.email)
   posts.push({
     score: req.body.totalScore
   })
@@ -29,7 +29,7 @@ router.post("/api/posts", function (req, res) {
   console.log(req.body);
   db.User.create({
       id: req.body.id,
-      email: null,
+      email: req.body.email,
       userPassword: null,
       scoreCJ: null,
       scoreEcon: null,
@@ -48,6 +48,21 @@ router.post("/api/posts", function (req, res) {
     });
 
 });
+
+  // PUT route for updating posts
+router.put("/api/posts", function(req, res) {
+    console.log("put route")
+    console.log(req.body)
+    db.user.update(req.body,
+      {
+        where: {
+          email: req.body.email
+        }
+      })
+      .then(function(dbPost) {
+        res.json(dbPost);
+      });
+  });
 
 /*
 localhost:3000/quiz1/quizOne
