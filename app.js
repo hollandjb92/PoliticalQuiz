@@ -28,9 +28,18 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.get("/", (req, res) => {
-  res.render("login", )
+  res.render("quizOne");
 })
 
+app.post("/", (req, res) => {
+
+  //passes email to quizpage - use that in SQL query? ASK GARRETT
+  res.render("quizOne");
+})
+
+app.get("/about", (req, res) => {
+  res.render("about");
+})
 const quizRoutes = require("./controllers/quizRoutes");
 const authRoutes = require("./controllers/authRoutes");
 

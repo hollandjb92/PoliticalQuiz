@@ -68,14 +68,9 @@ router.get("/quiz1/:quizNum", (req, res) => {
 })
 */
 router.get("/quiz", (req, res) => {
-  console.log("quiz1route")
   res.render("quizOne");
 })
 
-router.post("/quiz", (req, res) => {
-  console.log("quiz1route")
-  res.render("quizOne");
-})
 
 router.get("/results", (req, res) => {
   res.render("results")
