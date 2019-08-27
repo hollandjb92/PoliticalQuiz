@@ -175,17 +175,28 @@ $(document).ready(function () {
   //   }
 
 
-
+var answers = {
+  email: "", 
+  totalScore: 0,
+}
 
   $(document).on("click", "#startQuiz", function (event) {
-
+    
     event.preventDefault();
     let email = $("#email").val();
+<<<<<<< HEAD
 
 
     $.post(
       "/api/posts", {
         email
+=======
+    console.log("log statement" + email);
+    answers.email = email;
+    $.post(
+      "/api/posts", {
+        email: email
+>>>>>>> 6c4cc26758a25bcf1792a4172501733647c4e402
       },
       function (data, status) {
         console.log("Data: " + JSON.stringify(data) + "\nStatus: " + status);
@@ -233,24 +244,21 @@ $(document).ready(function () {
 
 
 
-    const userScores = {
-      scores: [
-        (q1Score = parseInt($("input[name=marijuana]:checked").val())),
-        (q2Score = parseInt($("input[name=guns]:checked").val())),
-        (q3Score = parseInt($("input[name=death]:checked").val())),
-        (totalScore = q1Score + q2Score + q3Score)
-      ]
-    };
+    
+     
+        var q1Score = parseInt($("input[name=marijuana]:checked").val())
+        var q2Score = parseInt($("input[name=guns]:checked").val())
+        var q3Score = parseInt($("input[name=death]:checked").val())
+        var totalScore =  q1Score + q2Score + q3Score
 
-    console.log(userScores);
-    $.post(
-      "/api/posts", {
-        totalScore
-      },
-      function (data, status) {
-        console.log("Data: " + JSON.stringify(data) + "\nStatus: " + status);
-      }
-    );
+        var score = {
+          userScore:totalScore
+        }
+
+    
+    answers.totalScore = totalScore;
+    console.log(totalScore);
+
 
     $("#questionsDiv").empty();
     $("#questionsDiv").append($("<h1>").text("Economics"));
@@ -305,16 +313,12 @@ $(document).ready(function () {
       ]
     };
     //need to send to database here?
-
-    console.log(userScores);
-    $.post(
-      "/api/posts", {
-        totalScore: totalScore
-      },
-      function (data, status) {
-        console.log("Data: " + JSON.stringify(data) + "\nStatus: " + status);
-      }
-    );
+    console.log(answers.totalScore);
+    console.log(userScores)
+    console.log(userScores.scores[3])
+    
+    answers.totalScore += userScores.scores[3];
+    console.log(answers.totalScore);
 
     $("#questionsDiv").empty();
     $("#questionsDiv").append($("<h1>").text("Healthcare"));
@@ -364,16 +368,8 @@ $(document).ready(function () {
       ]
     };
     //need to send to database here?
-
-    console.log(userScores);
-    $.post(
-      "/api/posts", {
-        totalScore: totalScore
-      },
-      function (data, status) {
-        console.log("Data: " + JSON.stringify(data) + "\nStatus: " + status);
-      }
-    );
+    console.log(answers.totalScore );
+    answers.totalScore += userScores.scores[3];
 
     $("#questionsDiv").empty();
     $("#questionsDiv").append($("<h1>").text("Education"));
@@ -425,16 +421,8 @@ $(document).ready(function () {
       ]
     };
     //need to send to database here?
-
-    console.log(userScores);
-    $.post(
-      "/api/posts", {
-        totalScore: totalScore
-      },
-      function (data, status) {
-        console.log("Data: " + JSON.stringify(data) + "\nStatus: " + status);
-      }
-    );
+    console.log(answers.totalScore );
+    answers.totalScore += userScores.scores[3];
 
     $("#questionsDiv").empty();
     $("#questionsDiv").append($("<h1>").text("Environment/Climate "));
@@ -484,16 +472,8 @@ $(document).ready(function () {
       ]
     };
     //need to send to database here?
-
-    console.log(userScores);
-    $.post(
-      "/api/posts", {
-        totalScore: totalScore
-      },
-      function (data, status) {
-        console.log("Data: " + JSON.stringify(data) + "\nStatus: " + status);
-      }
-    );
+    console.log(answers.totalScore );
+    answers.totalScore += userScores.scores[3];
 
     $("#questionsDiv").empty();
     $("#questionsDiv").append($("<h1>").text("Immigration"));
@@ -543,16 +523,8 @@ $(document).ready(function () {
       ]
     };
     //need to send to database here?
-
-    console.log(userScores);
-    $.post(
-      "/api/posts", {
-        totalScore: totalScore
-      },
-      function (data, status) {
-        console.log("Data: " + JSON.stringify(data) + "\nStatus: " + status);
-      }
-    );
+    console.log(answers.totalScore );
+    answers.totalScore += userScores.scores[3];
 
     $("#questionsDiv").empty();
     $("#questionsDiv").append($("<h1>").text("Age"));
@@ -599,19 +571,43 @@ $(document).ready(function () {
       ]
     };
     //need to send to database here?
-
-    console.log(userScores);
-    $.post(
-      "/api/posts", {
-        totalScore: totalScore
-      },
-      function (data, status) {
+    console.log(answers.totalScore );
+    answers.totalScore += userScores.scores[0];
+    $.ajax({
+      url: '/api/posts', 
+      type: 'PUT', 
+      data: answers,
+      success: function (data, status) {
         console.log("Data: " + JSON.stringify(data) + "\nStatus: " + status);
-      }
-    );
+      },
+      });
+
+      $.get(
+        "/api/candidates", {
+        },
+        function (data, status) {
+          console.log("Data: " + JSON.stringify(data) + "\nStatus: " + status);
+          remainder = 10000;
+          var iterator = 0;
+          for(i=0; i < 14; i++){
+            console.log("this is data i", data[i])
+            console.log(answers.totalScore)
+            remainder2 = Math.abs(answers.totalScore - data[i].totalScore)
+            if (remainder2 < remainder) {
+              remainder = remainder2;
+              iterator = i;
+            }
+            
+          }
+         console.log(data[iterator].canname, data[iterator].totalScore, data[iterator].party, data[iterator].candidateImage)
+         $("#questionsDiv").empty();
+         $("#questionsDiv").text(JSON.stringify(data[iterator]))
+        }
+      );
+
 
     // results go here //
-    $("#questionsDiv").empty();
+    
   });
   // d3 js //
   //   var width = 750,
