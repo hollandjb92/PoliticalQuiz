@@ -46,11 +46,13 @@ module.exports = function(app) {
 
   // POST route for saving a new post
   app.post("/api/posts", function(req, res) {
-    console.log(req.body);
+    console.log("log here" + req.body);
+    console.log("logging email: " + req.body.email);
     db.user.create({
       title: req.body.title,
       body: req.body.body,
-      category: req.body.category
+      category: req.body.category,
+      email: req.body.email
     })
       .then(function(dbPost) {
         res.json(dbPost);
@@ -71,6 +73,7 @@ module.exports = function(app) {
 
   // PUT route for updating posts
   app.put("/api/posts", function(req, res) {
+    console.log("put route")
     db.user.update(req.body,
       {
         where: {
