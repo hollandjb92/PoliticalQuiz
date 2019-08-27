@@ -1,17 +1,14 @@
 const express = require("express"),
   passport = require("passport"),
   LocalStrategy = require("passport-local");
-
-
-const quizRoutes = require("./controllers/quizRoutes");
-const authRoutes = require("./controllers/authRoutes");
-
+var session = require("express-session");
 
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
 app.set("view engine", "ejs");
+var db = require("./models");
 
 app.use(express.urlencoded({
   extended: true
@@ -22,14 +19,38 @@ app.use(express.static(__dirname + "/public"));
 
 
 //PASSPORT CONFIG GOES HERE
+app.use(session({
+  secret: "keyboard cat",
+  resave: true,
+  saveUninitialized: true
+}));
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.get("/", (req, res) => {
-  res.render("login", )
+  res.render("quizOne");
 })
+
+app.post("/", (req, res) => {
+
+  //passes email to quizpage - use that in SQL query? ASK GARRETT
+  res.render("quizOne");
+})
+
+app.get("/about", (req, res) => {
+  res.render("about");
+})
+const quizRoutes = require("./controllers/quizRoutes");
+const authRoutes = require("./controllers/authRoutes");
 
 
 app.use("/", [quizRoutes, authRoutes])
 
-
-
-app.listen(PORT, console.log(`Server running on PORT ${PORT}`))
+// =============================================================
+db.sequelize.sync({
+  force: false
+}).then(function () {
+  app.listen(PORT, function () {
+    console.log("App listening on PORT " + PORT);
+  });
+});

@@ -167,3 +167,30 @@
   color: #fff;
   background-color: #38a1f3;
 }
+
+footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+
+}
+
+#quizSection {
+  margin-bottom: 100px;
+}
+
+#questionsDiv {
+  text-align: center;
+  width: 50%;
+  float: left;
+  margin-top: -30px;
+  margin-bottom: 220px;
+}
+
+header {
+  margin-top: 50px;
+}
+
+#loginForm {
+  margin-top: 100px;
+}
