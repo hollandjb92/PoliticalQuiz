@@ -171,7 +171,13 @@ $(document).ready(function () {
       }
     })
     .change();
-  //   
+
+
+  $("#navStart").click(function () {
+    $("html, body").animate({
+      scrollTop: $("#questionsDiv").offset().top
+    }, 500);
+  });
 
   var answers = {
     email: "",
@@ -645,6 +651,7 @@ $(document).ready(function () {
             .selectAll(".solidArc")
             .data(pie(data))
             .enter()
+
             .append("path")
             //make it pick a random color??
             .attr("fill", function (d) {
@@ -654,17 +661,21 @@ $(document).ready(function () {
             .attr("stroke", "gray")
             .attr("d", arc)
             .on("mouseover", tip.show)
-            .on("mouseout", tip.hide);
+            .on("mouseout", tip.hide)
+
 
           var outerPath = svg
             .selectAll(".outlineArc")
             .data(pie(data))
             .enter()
             .append("path")
+
             .attr("fill", "none")
             .attr("stroke", "gray")
             .attr("class", "outlineArc")
             .attr("d", outlineArc);
+
+
 
           // calculate the weighted mean score // won't need this part but keep for now in case we do some kind of average
           var score =
@@ -682,8 +693,7 @@ $(document).ready(function () {
             .attr("dy", ".35em")
             .attr("text-anchor", "middle") // text-align: right
             .text(2020);
-        }
-      );
+        });
     });
 
     // results go here //
