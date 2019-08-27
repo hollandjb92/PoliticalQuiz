@@ -149,39 +149,42 @@ $(document).ready(function () {
       value: [40, 50, 60, 70, 80],
       name: "age",
       info: "Age is a concern for some of the candidates. Donald Trump is currently the oldest U.S. President at 73. If elected, Bernie Sanders would become the oldest president at 79."
-    },
+    }
   ];
 
 
 
-  // disabledButton() {
-  //     $(":radio")
-  //       .change(function () {
-  //         let count = 0;
-  //         var names = {};
-  //         $(":radio").each(function () {
-  //           names[$(this).attr("name")] = true;
-  //         });
-  //         $.each(names, function () {
-  //           count++;
-  //         });
-  //         if ($(":radio:checked").length === count) {
-  //           $(".submitQuestions").prop("disabled", false);
-  //         } else {
-  //           $(".submitQuestions").prop("disabled", true);
-  //         }
-  //       })
-  //       .change();
-  //   }
+  $(document).change("radio", function () {
+      let count = 0;
+      var names = {};
+      $(":radio").each(function () {
+        names[$(this).attr("name")] = true;
+      });
+      $.each(names, function () {
+        count++;
+      });
+      if ($(":radio:checked").length === count) {
+        $(".submitQuestions").prop("disabled", false);
+
+      } else {
+        $(".submitQuestions").prop("disabled", true);
+      }
+    })
+    .change();
 
 
-var answers = {
-  email: "", 
-  totalScore: 0,
-}
+  $("#navStart").click(function () {
+    $("html, body").animate({
+      scrollTop: $("#questionsDiv").offset().top
+    }, 500);
+  });
+
+  var answers = {
+    email: "",
+    totalScore: 0
+  };
 
   $(document).on("click", "#startQuiz", function (event) {
-    
     event.preventDefault();
     let email = $("#email").val();
     console.log("log statement" + email);
@@ -204,8 +207,6 @@ var answers = {
       newDiv.append($("<h3>").text("Question " + parseInt(i + 1)));
       newDiv.append($("<h5>").text(allQuestions[i].question));
       for (j = 0; j < 3; j++) {
-
-
         newDiv.append(
           $(
             "<label><input type='radio' value='" +
@@ -226,7 +227,7 @@ var answers = {
 
     $("#questionsDiv").append(
       $(
-        "<button type='submit' class='btn btn-primary submitQuestions'   id ='criminalJustice'> Next Questions </button>"
+        "<button type='submit' class='btn btn-primary submitQuestions' disabled='disabled'  id ='criminalJustice'> Next Questions </button>"
       )
     );
   });
@@ -234,23 +235,17 @@ var answers = {
   $(document).on("click", "#criminalJustice", function () {
     event.preventDefault();
 
+    var q1Score = parseInt($("input[name=marijuana]:checked").val());
+    var q2Score = parseInt($("input[name=guns]:checked").val());
+    var q3Score = parseInt($("input[name=death]:checked").val());
+    var totalScore = q1Score + q2Score + q3Score;
 
+    var score = {
+      userScore: totalScore
+    };
 
-    
-     
-        var q1Score = parseInt($("input[name=marijuana]:checked").val())
-        var q2Score = parseInt($("input[name=guns]:checked").val())
-        var q3Score = parseInt($("input[name=death]:checked").val())
-        var totalScore =  q1Score + q2Score + q3Score
-
-        var score = {
-          userScore:totalScore
-        }
-
-    
     answers.totalScore = totalScore;
     console.log(totalScore);
-
 
     $("#questionsDiv").empty();
     $("#questionsDiv").append($("<h1>").text("Economics"));
@@ -261,7 +256,6 @@ var answers = {
       newDiv.append($("<h3>").text("Question " + parseInt(i + 1)));
       newDiv.append($("<h5>").text(allQuestions[i].question));
       for (j = 0; j < 3; j++) {
-
         // newDiv.append($("<label>").append($("<input>").attr({
         //   type: "radio",
         //   value: allQuestions[i].value[j],
@@ -287,7 +281,7 @@ var answers = {
 
     $("#questionsDiv").append(
       $(
-        "<button type='submit' class='btn btn-primary submitQuestions' id='taxWage' >Next Questions</button>"
+        "<button type='submit' class='btn btn-primary submitQuestions' disabled='disabled' id='taxWage' >Next Questions</button>"
       )
     );
   });
@@ -306,9 +300,9 @@ var answers = {
     };
     //need to send to database here?
     console.log(answers.totalScore);
-    console.log(userScores)
-    console.log(userScores.scores[3])
-    
+    console.log(userScores);
+    console.log(userScores.scores[3]);
+
     answers.totalScore += userScores.scores[3];
     console.log(answers.totalScore);
 
@@ -321,8 +315,6 @@ var answers = {
       newDiv.append($("<h3>").text("Question " + parseInt(i + 1)));
       newDiv.append($("<h5>").text(allQuestions[i].question));
       for (j = 0; j < 3; j++) {
-
-
         newDiv.append(
           $(
             "<label><input type='radio' value='" +
@@ -343,7 +335,7 @@ var answers = {
 
     $("#questionsDiv").append(
       $(
-        "<button type='submit' class='btn btn-primary submitQuestions'  id='healthcare'>Next Questions</button>"
+        "<button type='submit' class='btn btn-primary submitQuestions' disabled='disabled' id='healthcare'>Next Questions</button>"
       )
     );
   });
@@ -360,7 +352,7 @@ var answers = {
       ]
     };
     //need to send to database here?
-    console.log(answers.totalScore );
+    console.log(answers.totalScore);
     answers.totalScore += userScores.scores[3];
 
     $("#questionsDiv").empty();
@@ -372,8 +364,6 @@ var answers = {
       newDiv.append($("<h3>").text("Question " + parseInt(i + 1)));
       newDiv.append($("<h5>").text(allQuestions[i].question));
       for (j = 0; j < 3; j++) {
-
-
         newDiv.append(
           $(
             "<label><input type='radio' value='" +
@@ -394,12 +384,10 @@ var answers = {
 
     $("#questionsDiv").append(
       $(
-        "<button type='submit' class='btn btn-primary submitQuestions'  id='education'>Next Questions</button>"
+        "<button type='submit' class='btn btn-primary submitQuestions' disabled='disabled' id='education'>Next Questions</button>"
       )
     );
   });
-
-
 
   $(document).on("click", "#education", function (event) {
     event.preventDefault();
@@ -413,7 +401,7 @@ var answers = {
       ]
     };
     //need to send to database here?
-    console.log(answers.totalScore );
+    console.log(answers.totalScore);
     answers.totalScore += userScores.scores[3];
 
     $("#questionsDiv").empty();
@@ -425,8 +413,6 @@ var answers = {
       newDiv.append($("<h3>").text("Question " + parseInt(i + 1)));
       newDiv.append($("<h5>").text(allQuestions[i].question));
       for (j = 0; j < 3; j++) {
-
-
         newDiv.append(
           $(
             "<label><input type='radio' value='" +
@@ -447,7 +433,7 @@ var answers = {
 
     $("#questionsDiv").append(
       $(
-        "<button type='submit' class='btn btn-primary submitQuestions'  id='climate'>Next Questions</button>"
+        "<button type='submit' class='btn btn-primary submitQuestions' disabled='disabled' id='climate'>Next Questions</button>"
       )
     );
   });
@@ -464,7 +450,7 @@ var answers = {
       ]
     };
     //need to send to database here?
-    console.log(answers.totalScore );
+    console.log(answers.totalScore);
     answers.totalScore += userScores.scores[3];
 
     $("#questionsDiv").empty();
@@ -476,8 +462,6 @@ var answers = {
       newDiv.append($("<h3>").text("Question " + parseInt(i + 1)));
       newDiv.append($("<h5>").text(allQuestions[i].question));
       for (j = 0; j < 3; j++) {
-
-
         newDiv.append(
           $(
             "<label><input type='radio' value='" +
@@ -498,7 +482,7 @@ var answers = {
 
     $("#questionsDiv").append(
       $(
-        "<button type='submit' class='btn btn-primary submitQuestions'  id='immigration'>Next Questions</button>"
+        "<button type='submit' class='btn btn-primary submitQuestions' disabled='disabled' id='immigration'>Next Questions</button>"
       )
     );
   });
@@ -515,7 +499,7 @@ var answers = {
       ]
     };
     //need to send to database here?
-    console.log(answers.totalScore );
+    console.log(answers.totalScore);
     answers.totalScore += userScores.scores[3];
 
     $("#questionsDiv").empty();
@@ -527,8 +511,6 @@ var answers = {
       newDiv.append($("<h3>").text("Question " + parseInt(i + 1)));
       newDiv.append($("<h5>").text(allQuestions[i].question));
       for (j = 0; j < 5; j++) {
-
-
         newDiv.append(
           $(
             "<label><input type='radio' value='" +
@@ -549,7 +531,7 @@ var answers = {
 
     $("#questionsDiv").append(
       $(
-        "<button type='submit' class='btn btn-primary submitQuestions'  id='age'>See Results</button>"
+        "<button type='submit' class='btn btn-primary submitQuestions' disabled='disabled' id='age'>See Results</button>"
       )
     );
   });
@@ -558,152 +540,166 @@ var answers = {
     event.preventDefault();
 
     const userScores = {
-      scores: [
-        (totalScore = parseInt($("input[name=age]:checked").val()))
-      ]
+      scores: [(totalScore = parseInt($("input[name=age]:checked").val()))]
     };
     //need to send to database here?
-    console.log(answers.totalScore );
+    console.log(answers.totalScore);
     answers.totalScore += userScores.scores[0];
     $.ajax({
-      url: '/api/posts', 
-      type: 'PUT', 
+      url: "/api/posts",
+      type: "PUT",
       data: answers,
       success: function (data, status) {
         console.log("Data: " + JSON.stringify(data) + "\nStatus: " + status);
-      },
-      });
+      }
+    });
 
-      $.get(
-        "/api/candidates", {
-        },
-        function (data, status) {
-          console.log("Data: " + JSON.stringify(data) + "\nStatus: " + status);
-          remainder = 10000;
-          var iterator = 0;
-          for(i=0; i < 14; i++){
-            console.log("this is data i", data[i])
-            console.log(answers.totalScore)
-            remainder2 = Math.abs(answers.totalScore - data[i].totalScore)
-            if (remainder2 < remainder) {
-              remainder = remainder2;
-              iterator = i;
-            }
-            
-          }
-         console.log(data[iterator].canname, data[iterator].totalScore, data[iterator].party, data[iterator].candidateImage)
-         $("#questionsDiv").empty();
-         $("#questionsDiv").text(JSON.stringify(data[iterator]))
+    $.get("/api/candidates", {}, function (data, status) {
+      console.log("Data: " + JSON.stringify(data) + "\nStatus: " + status);
+      remainder = 10000;
+      var iterator = 0;
+      for (i = 0; i < 14; i++) {
+        console.log("this is data i", data[i]);
+        console.log(answers.totalScore);
+        remainder2 = Math.abs(answers.totalScore - data[i].totalScore);
+        if (remainder2 < remainder) {
+          remainder = remainder2;
+          iterator = i;
         }
+      }
+      console.log(
+        data[iterator].canname,
+        data[iterator].totalScore,
+        data[iterator].party,
+        data[iterator].candidateImage
+      );
+      $("#questionsDiv").empty();
+      $("#questionsDiv").append(
+        "<img src='" +
+        data[iterator].candidateImage +
+        "' height='300px' width='300px'>"
+      );
+      $("#questionsDiv").append(
+        $("<h1>").text(data[iterator].canname + " - " + data[iterator].party)
       );
 
+      $("#results").empty();
+
+      var width = 750,
+        height = 750,
+        radius = Math.min(width, height) / 2,
+        innerRadius = 0.3 * radius;
+
+      var pie = d3.layout
+        .pie()
+        .sort(null)
+        .value(function (d) {
+          return d.width;
+        });
+
+      var tip = d3
+        .tip()
+        .attr("class", "d3-tip")
+        .offset([0, 0])
+        .html(function (d) {
+          return (
+            d.data.label + ": <span style='color:red'>" + d.data.score + "%</span>"
+          );
+        });
+
+      var arc = d3.svg
+        .arc()
+        .innerRadius(innerRadius)
+        .outerRadius(function (d) {
+          return (radius - innerRadius) * (d.data.score / 100.0) + innerRadius;
+        });
+
+      var outlineArc = d3.svg
+        .arc()
+        .innerRadius(innerRadius)
+        .outerRadius(radius);
+
+      var svg = d3
+        .select("#results")
+        .append("svg")
+        .attr("width", width)
+        .attr("height", height)
+        .append("g")
+        .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
+
+      svg.call(tip);
+
+
+
+      d3.json("/api/candidates",
+        function (error, data) {
+          data.forEach(function (d) {
+            d.id = d.id;
+            d.order = +d.id;
+            d.color = d.color;
+            d.weight = +0.5;
+            d.score = +Math.round((100 - (((Math.abs(d.totalScore - answers.totalScore)) / ((d.totalScore + answers.totalScore) / 2)) * 100)));
+            d.width = +0.5;
+            d.label = d.canname;
+          });
+
+          //sort chart from highest to lowest if desired
+          // data.sort((a, b) => d3.descending(a.score, b.score));
+          // for (var i = 0; i < data.score; i++) { console.log(data[i].id) }
+
+          var path = svg
+            .selectAll(".solidArc")
+            .data(pie(data))
+            .enter()
+
+            .append("path")
+            //make it pick a random color??
+            .attr("fill", function (d) {
+              return '#' + Math.floor(Math.random() * 16777215).toString(16).padStart(6, '0')
+            })
+            .attr("class", "solidArc")
+            .attr("stroke", "gray")
+            .attr("d", arc)
+            .on("mouseover", tip.show)
+            .on("mouseout", tip.hide)
+
+
+          var outerPath = svg
+            .selectAll(".outlineArc")
+            .data(pie(data))
+            .enter()
+            .append("path")
+
+            .attr("fill", "none")
+            .attr("stroke", "gray")
+            .attr("class", "outlineArc")
+            .attr("d", outlineArc);
+
+
+
+          // calculate the weighted mean score // won't need this part but keep for now in case we do some kind of average
+          var score =
+            data.reduce(function (a, b) {
+              //console.log('a:' + a + ', b.score: ' + b.score + ', b.weight: ' + b.weight);
+              return a + b.score * b.weight;
+            }, 0) /
+            data.reduce(function (a, b) {
+              return a + b.weight;
+            }, 0);
+
+          svg
+            .append("svg:text")
+            .attr("class", "aster-score ")
+            .attr("dy", ".35em")
+            .attr("text-anchor", "middle") // text-align: right
+            .text(2020);
+        });
+    });
 
     // results go here //
-    
+
+
   });
-  // d3 js //
-  //   var width = 750,
-  //     height = 750,
-  //     radius = Math.min(width, height) / 2,
-  //     innerRadius = 0.3 * radius;
 
-  //   var pie = d3.layout
-  //     .pie()
-  //     .sort(null)
-  //     .value(function (d) {
-  //       return d.width;
-  //     });
 
-  //   var tip = d3
-  //     .tip()
-  //     .attr("class", "d3-tip")
-  //     .offset([0, 0])
-  //     .html(function (d) {
-  //       return (
-  //         d.data.label + ": <span style='color:red'>" + d.data.score + "</span>"
-  //       );
-  //     });
-
-  //   var arc = d3.svg
-  //     .arc()
-  //     .innerRadius(innerRadius)
-  //     .outerRadius(function (d) {
-  //       return (radius - innerRadius) * (d.data.score / 100.0) + innerRadius;
-  //     });
-
-  //   var outlineArc = d3.svg
-  //     .arc()
-  //     .innerRadius(innerRadius)
-  //     .outerRadius(radius);
-
-  //   var svg = d3
-  //     .select("body")
-  //     .append("svg")
-  //     .attr("width", width)
-  //     .attr("height", height)
-  //     .append("g")
-  //     .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
-
-  //   svg.call(tip);
-
-  //   d3.csv(
-  //     "https://gist.githubusercontent.com/bbest/2de0e25d4840c68f2db1/raw/52757de7e4584a6ff8cefbd2f8cea8a0d7cc2f0c/aster_data.csv",
-  //     function (error, data) {
-  //       data.forEach(function (d) {
-  //         d.id = d.id;
-  //         d.order = +d.order;
-  //         d.color = d.color;
-  //         d.weight = +d.weight;
-  //         d.score = +d.score;
-  //         d.width = +d.weight;
-  //         d.label = d.label;
-  //       });
-
-  //       //sort chart from highest to lowest if desired
-  //       // data.sort((a, b) => d3.descending(a.score, b.score));
-  //       // for (var i = 0; i < data.score; i++) { console.log(data[i].id) }
-
-  //       var path = svg
-  //         .selectAll(".solidArc")
-  //         .data(pie(data))
-  //         .enter()
-  //         .append("path")
-  //         //make it pick a random color??
-  //         .attr("fill", function (d) {
-  //           return d.data.color;
-  //         })
-  //         .attr("class", "solidArc")
-  //         .attr("stroke", "gray")
-  //         .attr("d", arc)
-  //         .on("mouseover", tip.show)
-  //         .on("mouseout", tip.hide);
-
-  //       var outerPath = svg
-  //         .selectAll(".outlineArc")
-  //         .data(pie(data))
-  //         .enter()
-  //         .append("path")
-  //         .attr("fill", "none")
-  //         .attr("stroke", "gray")
-  //         .attr("class", "outlineArc")
-  //         .attr("d", outlineArc);
-
-  //       // calculate the weighted mean score // won't need this part but keep for now in case we do some kind of average
-  //       var score =
-  //         data.reduce(function (a, b) {
-  //           //console.log('a:' + a + ', b.score: ' + b.score + ', b.weight: ' + b.weight);
-  //           return a + b.score * b.weight;
-  //         }, 0) /
-  //         data.reduce(function (a, b) {
-  //           return a + b.weight;
-  //         }, 0);
-
-  //       svg
-  //         .append("svg:text")
-  //         .attr("class", "aster-score ")
-  //         .attr("dy", ".35em")
-  //         .attr("text-anchor", "middle") // text-align: right
-  //         .text(2020);
-  //     }
-  //   );
 });

@@ -21,7 +21,9 @@ router.get("/api/posts", function (req, res) {
 
 router.get("/api/candidates", function (req, res) {
   console.log('statusCode: a', res.statusCode);
-  db.Candidate.findAll({attributes: ['canname', 'totalScore', 'party', 'candidateImage']})
+  db.Candidate.findAll({
+      attributes: ['canname', 'totalScore', 'party', 'candidateImage', "id"]
+    })
     .then(function (dbPost) {
       res.json(dbPost);
     });
@@ -59,20 +61,19 @@ router.post("/api/posts", function (req, res) {
 });
 
 
-  // PUT route for updating posts
-router.put("/api/posts", function(req, res) {
-    console.log("put route")
-    console.log(req.body)
-    db.User.update(req.body,
-      {
-        where: {
-          email: req.body.email
-        }
-      })
-      .then(function(dbPost) {
-        res.json(dbPost);
-      });
-  });
+// PUT route for updating posts
+router.put("/api/posts", function (req, res) {
+  console.log("put route")
+  console.log(req.body)
+  db.User.update(req.body, {
+      where: {
+        email: req.body.email
+      }
+    })
+    .then(function (dbPost) {
+      res.json(dbPost);
+    });
+});
 
 
 

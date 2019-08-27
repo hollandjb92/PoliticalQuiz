@@ -172,7 +172,7 @@ footer {
   position: fixed;
   bottom: 0;
   width: 100%;
-
+  margin-top: 200px;
 }
 
 #quizSection {
@@ -183,8 +183,9 @@ footer {
   text-align: center;
   width: 50%;
   float: left;
-  margin-top: -30px;
+  margin-top: 30px;
   margin-bottom: 220px;
+  height: 100%;
 }
 
 header {
@@ -193,4 +194,8 @@ header {
 
 #loginForm {
   margin-top: 100px;
+}
+
+svg {
+  margin-bottom: 100px;
 }
