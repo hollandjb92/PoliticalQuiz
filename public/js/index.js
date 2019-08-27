@@ -181,7 +181,16 @@ $(document).ready(function () {
 
     event.preventDefault();
     let email = $("#email").val();
-    console.log(email);
+
+
+    $.post(
+      "/api/posts", {
+        email
+      },
+      function (data, status) {
+        console.log("Data: " + JSON.stringify(data) + "\nStatus: " + status);
+      }
+    );
 
     $("#questionsDiv").empty();
     $("#questionsDiv").append($("<h1>").text("Criminal Justice"));

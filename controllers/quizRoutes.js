@@ -29,7 +29,7 @@ router.post("/api/posts", function (req, res) {
   console.log(req.body);
   db.User.create({
       id: req.body.id,
-      email: null,
+      email: req.body.email,
       userPassword: null,
       scoreCJ: null,
       scoreEcon: null,
