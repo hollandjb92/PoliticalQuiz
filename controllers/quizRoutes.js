@@ -19,6 +19,15 @@ router.get("/api/posts", function (req, res) {
 
 });
 
+router.get("/api/candidates", function (req, res) {
+  console.log('statusCode: a', res.statusCode);
+  db.Candidate.findAll({attributes: ['canname', 'totalScore', 'party', 'candidateImage']})
+    .then(function (dbPost) {
+      res.json(dbPost);
+    });
+
+});
+
 router.post("/api/posts", function (req, res) {
   console.log('statusCode: b', req.statusCode);
   console.log("this here", req.body.email)
@@ -49,11 +58,12 @@ router.post("/api/posts", function (req, res) {
 
 });
 
+
   // PUT route for updating posts
 router.put("/api/posts", function(req, res) {
     console.log("put route")
     console.log(req.body)
-    db.user.update(req.body,
+    db.User.update(req.body,
       {
         where: {
           email: req.body.email
@@ -63,6 +73,9 @@ router.put("/api/posts", function(req, res) {
         res.json(dbPost);
       });
   });
+
+
+
 
 /*
 localhost:3000/quiz1/quizOne
