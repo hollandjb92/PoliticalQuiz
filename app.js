@@ -32,7 +32,6 @@ app.get("/", (req, res) => {
 })
 
 app.post("/", (req, res) => {
-
   //passes email to quizpage - use that in SQL query? ASK GARRETT
   res.render("quizOne");
 })
