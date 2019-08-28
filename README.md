@@ -28,6 +28,8 @@ Follow these instructions to get a copy of the project up and running on your lo
 </li>
 </ol>
 
+### Please initialize your database by importing the schema.sql file into your preferred database tool
+
 ### Quick View
 ![PoliticGif](https://media.giphy.com/media/WrbGbi2SYA8JdmwoKa/giphy.gif)
 
