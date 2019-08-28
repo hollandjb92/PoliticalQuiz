@@ -153,26 +153,12 @@
   color: #777;
 }
 
-.btn-google {
-  color: #fff;
-  background-color: #ea4335;
-}
-
-.btn-facebook {
-  color: #fff;
-  background-color: #3b5998;
-}
-
-.btn-twitter {
-  color: #fff;
-  background-color: #38a1f3;
-}
 
 footer {
   position: fixed;
   bottom: 0;
   width: 100%;
-  margin-top: 200px;
+
 }
 
 #quizSection {
@@ -197,5 +183,24 @@ header {
 }
 
 svg {
-  margin-bottom: 100px;
+  margin-bottom: 85px;
+}
+
+.infoDiv {
+  margin: 10px 10px 0
+}
+
+iframe {
+  margin-bottom: 175px;
+}
+
+input[type="radio"] {
+  margin-left: 10px;
+  margin-right: 5px;
+  height: 15px;
+  width: 15px;
+}
+
+#resultParty {
+  font-style: italic;
 }
