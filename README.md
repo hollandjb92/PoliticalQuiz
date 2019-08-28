@@ -47,6 +47,7 @@ Follow these instructions to get a copy of the project up and running on your lo
     <li><a href="https://www.mysql.com/">SQL</a></li>
   <li><a href="https://sequelize.org/">Sequelize ORM</a></li>
     <li><a href="https://www.npmjs.com/package/ejs">EJS</a></li>
+      <li><a href="https://d3js.org/">D3.js</a></li>
 
 
 </ul>
