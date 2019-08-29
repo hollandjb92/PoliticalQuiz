@@ -1,4 +1,4 @@
-//put this into functions and make it like 1/10 of the size...eventually
+//put this into functions and make it like 1/10 of the size...eventually //
 
 
 $(document).ready(function () {
