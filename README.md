@@ -3,7 +3,7 @@
 <p>Too many 2020 candidates for you to keep track? Use are our quiz to find out watch candidate is the best fit for you</p>
 
 ## Live Link
-Check out the deployed application <a href="https://sleepy-retreat-79734.herokuapp.com/">HERE</a>
+Check out the deployed application <a href="https://pacific-inlet-24027.herokuapp.com/">HERE</a>
 
 ## Getting Started
 
