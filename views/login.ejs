@@ -11,11 +11,16 @@
             <p class="card-title text-center text-uppercase">Enter your email to see your results</p>
             <form class="form-signin" action="/api/posts" method="POST">
               <div class="form-label-group">
-                <input type="text" id="inputlogin" name="email" class="form-control" placeholder="Email Address"
+                <input type="email" id="inputlogin" name="email" class="form-control" placeholder="Email Address"
                   required autofocus>
                 <label for="inputlogin">Email Address </label>
-              </div>
 
+              </div>
+              <div class="form-label-group">
+                <input type="text" id="inputLoginPassword" name="password" class="form-control" placeholder="Password"
+                  required>
+                <label for="inputLoginPassword">Password</label>
+              </div>
 
               <button class="btn btn-lg btn-primary btn-block text-uppercase" id="login" type="submit">Log in</button>
             </form>
