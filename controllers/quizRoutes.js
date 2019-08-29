@@ -20,7 +20,7 @@ router.get("/api/posts", function (req, res) {
 });
 
 router.get("/api/candidates", function (req, res) {
-  console.log(' got here statusCode: a', res.statusCode);
+  console.log('statusCode: a', res.statusCode);
   db.Candidate.findAll({
       attributes: ['canname', 'totalScore', 'party', 'candidateImage', "id"]
     })
